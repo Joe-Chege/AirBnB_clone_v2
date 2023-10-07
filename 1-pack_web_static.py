@@ -8,9 +8,10 @@ def do_pack():
     try:
         current_time = strftime("%Y%m%d%H%M%S")
         local("mkdir -p versions")
-        local("tar -czvf versions/web_static_{}.tgz web_static/".format(current_time))
+        archive_path = "versions/web_static_{}.tgz".format(current_time)
+        local("tar -czvf {} web_static/".format(archive_path))
 
-        return "versions/web_static_{}.tgz".format(current_time)
+        return archive_path
 
     except Exception as e:
         return None
